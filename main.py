@@ -11,6 +11,8 @@ roadmark_width = int(width/80)
 right_lane = width/2 + road_width/4
 left_lane = width/2 - road_width/4
 
+speed = 1
+
 # Initialize the game
 pygame.init()
 running = True
@@ -39,11 +41,17 @@ yellow_car_location = yellow_car.get_rect()
 # Locate the car on the screen
 yellow_car_location.center = right_lane, height * 0.2
 
+counter = 0
 # Game loop
 while running:
+    counter += 1
+    if counter == 2000:
+        speed += 0.25
+        counter = 0
+        print("level up! ", speed)
     # Animate opponent car
     # To move the car in the Y axis we need to select the second part of the tuple
-    yellow_car_location[1] += 1
+    yellow_car_location[1] += speed
     if yellow_car_location[1] > height:
         if random.randint(0, 1) == 0:
             yellow_car_location.center = right_lane, -200
