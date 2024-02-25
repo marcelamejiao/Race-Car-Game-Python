@@ -45,10 +45,16 @@ while running:
     # To move the car in the Y axis we need to select the second part of the tuple
     yellow_car_location[1] += 1
     if yellow_car_location[1] > height:
-        if random.randint(0,1) == 0:
-            yellow_car_location.center = right_lane, - 200
+        if random.randint(0, 1) == 0:
+            yellow_car_location.center = right_lane, -200
         else:
-            yellow_car_location.center = left_lane, - 200
+            yellow_car_location.center = left_lane, -200
+    # End game
+    if pink_car_location[0] == yellow_car_location[0] and yellow_car_location[1] > pink_car_location[1] - 250:
+        print("SORRY YOU LOST!")
+        print("GAME OVER! :(")
+        break
+
     for event in pygame.event.get():
         # Add first event listener
         if event.type == QUIT:
