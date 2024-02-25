@@ -7,6 +7,8 @@ size = width, height = (1200, 800)
 road_width = int(width/1.6)
 # Road mark
 roadmark_width = int(width/80)
+right_lane = width/2 + road_width/4
+left_lane = width/2 - road_width/4
 
 # Initialize the game
 pygame.init()
@@ -27,17 +29,22 @@ pink_car = pygame.image.load("pink-car.png")
 # Fetch the location of the image
 pink_car_location = pink_car.get_rect()
 # Locate the car on the screen
-pink_car_location.center = width/2 - road_width/4, height * 0.8
+pink_car_location.center = left_lane, height * 0.8
 
 # Load opponent car image
 yellow_car = pygame.image.load("yellow-car.png")
 # Fetch the location of the image
 yellow_car_location = yellow_car.get_rect()
 # Locate the car on the screen
-yellow_car_location.center = width/2 + road_width/4, height * 0.2
+yellow_car_location.center = right_lane, height * 0.2
 
 # Game loop
 while running:
+    # Animate opponent car
+    # To move the car in the Y axis we need to select the second part of the tuple
+    yellow_car_location[1] += 1
+    if yellow_car_location[1] > height:
+        yellow_car_location[1] = -200
     for event in pygame.event.get():
         # Add first event listener
         if event.type == QUIT:
