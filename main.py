@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import random
 
 # Screen size
 size = width, height = (1200, 800)
@@ -44,7 +45,10 @@ while running:
     # To move the car in the Y axis we need to select the second part of the tuple
     yellow_car_location[1] += 1
     if yellow_car_location[1] > height:
-        yellow_car_location[1] = -200
+        if random.randint(0,1) == 0:
+            yellow_car_location.center = right_lane, - 200
+        else:
+            yellow_car_location.center = left_lane, - 200
     for event in pygame.event.get():
         # Add first event listener
         if event.type == QUIT:
