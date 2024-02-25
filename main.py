@@ -18,34 +18,6 @@ screen = pygame.display.set_mode(size)
 screen.fill((60, 220, 0))
 # Screen title
 pygame.display.set_caption("Marcela's car game")
-# Draw road
-pygame.draw.rect(
-    screen,
-    (50, 50, 50),
-    # Coordinates:
-    (width/2 - road_width/2, 0, road_width, height))
-
-# Draw center roadmark
-pygame.draw.rect(
-    screen,
-    (255, 240, 60),
-    # Coordinates
-    (width/2 - roadmark_width/2, 0, roadmark_width, height))
-
-# Draw left side roadmark
-pygame.draw.rect(
-    screen,
-    (255, 255, 255),
-    # Coordinates
-    (width/2 - road_width/2 + roadmark_width * 2, 0, roadmark_width, height))
-
-# Draw right side roadmark
-pygame.draw.rect(
-    screen,
-    (255, 255, 255),
-    # Coordinates
-    (width/2 + road_width/2 - roadmark_width * 3, 0, roadmark_width, height))
-
 
 # Apply changes
 pygame.display.update()
@@ -67,8 +39,45 @@ yellow_car_location.center = width/2 + road_width/4, height * 0.2
 # Game loop
 while running:
     for event in pygame.event.get():
+        # Add first event listener
         if event.type == QUIT:
             running = False
+        # Add second event listener
+        if event.type == KEYDOWN:
+            # Move the car to the left side
+            if event.key in [K_a, K_LEFT]:
+                pink_car_location = pink_car_location.move([-int(road_width/2), 0])
+                # Move the car to the left side
+            if event.key in [K_d, K_RIGHT]:
+                pink_car_location = pink_car_location.move([int(road_width / 2), 0])
+
+    # Draw road
+    pygame.draw.rect(
+        screen,
+        (50, 50, 50),
+        # Coordinates:
+        (width / 2 - road_width / 2, 0, road_width, height))
+
+    # Draw center roadmark
+    pygame.draw.rect(
+        screen,
+        (255, 240, 60),
+        # Coordinates
+        (width / 2 - roadmark_width / 2, 0, roadmark_width, height))
+
+    # Draw left side roadmark
+    pygame.draw.rect(
+        screen,
+        (255, 255, 255),
+        # Coordinates
+        (width / 2 - road_width / 2 + roadmark_width * 2, 0, roadmark_width, height))
+
+    # Draw right side roadmark
+    pygame.draw.rect(
+        screen,
+        (255, 255, 255),
+        # Coordinates
+        (width / 2 + road_width / 2 - roadmark_width * 3, 0, roadmark_width, height))
 
     # Operation of bitmap images, draw the car
     screen.blit(pink_car, pink_car_location)
