@@ -50,13 +50,19 @@ pygame.draw.rect(
 # Apply changes
 pygame.display.update()
 
-# Load car images
+# Load user car image
 pink_car = pygame.image.load("pink-car.png")
 # Fetch the location of the image
 pink_car_location = pink_car.get_rect()
 # Locate the car on the screen
 pink_car_location.center = width/2 - road_width/4, height * 0.8
 
+# Load opponent car image
+yellow_car = pygame.image.load("yellow-car.png")
+# Fetch the location of the image
+yellow_car_location = yellow_car.get_rect()
+# Locate the car on the screen
+yellow_car_location.center = width/2 + road_width/4, height * 0.2
 
 # Game loop
 while running:
@@ -66,6 +72,7 @@ while running:
 
     # Operation of bitmap images, draw the car
     screen.blit(pink_car, pink_car_location)
+    screen.blit(yellow_car, yellow_car_location)
     pygame.display.update()
 
 # End the game
