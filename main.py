@@ -50,10 +50,23 @@ pygame.draw.rect(
 # Apply changes
 pygame.display.update()
 
+# Load car images
+pink_car = pygame.image.load("pink-car.png")
+# Fetch the location of the image
+pink_car_location = pink_car.get_rect()
+# Locate the car on the screen
+pink_car_location.center = width/2 - road_width/4, height * 0.8
+
+
+# Game loop
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+
+    # Operation of bitmap images, draw the car
+    screen.blit(pink_car, pink_car_location)
+    pygame.display.update()
 
 # End the game
 pygame.quit()
