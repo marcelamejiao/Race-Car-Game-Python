@@ -28,14 +28,14 @@ pygame.display.set_caption("Marcela's car game")
 pygame.display.update()
 
 # Load user car image
-blue_car = pygame.image.load("blue-car.png")
+blue_car = pygame.image.load("assets/img/blue-car.png")
 # Fetch the location of the image
 blue_car_location = blue_car.get_rect()
 # Locate the car on the screen
 blue_car_location.center = left_lane, height * 0.8
 
 # Load opponent car image
-red_car = pygame.image.load("red-car.png")
+red_car = pygame.image.load("assets/img/red-car.png")
 # Fetch the location of the image
 red_car_location = red_car.get_rect()
 # Locate the car on the screen
