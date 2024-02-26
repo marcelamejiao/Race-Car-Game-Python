@@ -28,18 +28,18 @@ pygame.display.set_caption("Marcela's car game")
 pygame.display.update()
 
 # Load user car image
-pink_car = pygame.image.load("pink-car.png")
+blue_car = pygame.image.load("blue-car.png")
 # Fetch the location of the image
-pink_car_location = pink_car.get_rect()
+blue_car_location = blue_car.get_rect()
 # Locate the car on the screen
-pink_car_location.center = left_lane, height * 0.8
+blue_car_location.center = left_lane, height * 0.8
 
 # Load opponent car image
-yellow_car = pygame.image.load("yellow-car.png")
+red_car = pygame.image.load("red-car.png")
 # Fetch the location of the image
-yellow_car_location = yellow_car.get_rect()
+red_car_location = red_car.get_rect()
 # Locate the car on the screen
-yellow_car_location.center = right_lane, height * 0.2
+red_car_location.center = right_lane, height * 0.2
 
 counter = 0
 # Game loop
@@ -51,14 +51,14 @@ while running:
         print("level up! ", speed)
     # Animate opponent car
     # To move the car in the Y axis we need to select the second part of the tuple
-    yellow_car_location[1] += speed
-    if yellow_car_location[1] > height:
+    red_car_location[1] += speed
+    if red_car_location[1] > height:
         if random.randint(0, 1) == 0:
-            yellow_car_location.center = right_lane, -200
+            red_car_location.center = right_lane, -200
         else:
-            yellow_car_location.center = left_lane, -200
+            red_car_location.center = left_lane, -200
     # End game
-    if pink_car_location[0] == yellow_car_location[0] and yellow_car_location[1] > pink_car_location[1] - 250:
+    if blue_car_location[0] == red_car_location[0] and red_car_location[1] > blue_car_location[1] - 250:
         print("SORRY YOU LOST!")
         print("GAME OVER! :(")
         break
@@ -71,10 +71,10 @@ while running:
         if event.type == KEYDOWN:
             # Move the car to the left side
             if event.key in [K_a, K_LEFT]:
-                pink_car_location = pink_car_location.move([-int(road_width/2), 0])
+                blue_car_location = blue_car_location.move([-int(road_width/2), 0])
                 # Move the car to the left side
             if event.key in [K_d, K_RIGHT]:
-                pink_car_location = pink_car_location.move([int(road_width / 2), 0])
+                blue_car_location = blue_car_location.move([int(road_width / 2), 0])
 
     # Draw road
     pygame.draw.rect(
@@ -105,8 +105,8 @@ while running:
         (width / 2 + road_width / 2 - roadmark_width * 3, 0, roadmark_width, height))
 
     # Operation of bitmap images, draw the car
-    screen.blit(pink_car, pink_car_location)
-    screen.blit(yellow_car, yellow_car_location)
+    screen.blit(blue_car, blue_car_location)
+    screen.blit(red_car, red_car_location)
     pygame.display.update()
 
 # End the game
